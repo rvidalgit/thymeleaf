@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Inserção de Instituição</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.4.1/css/bootstrap.min.css"/>
+</head>
+<body>
+
+
+    <div class="container d-flex flex-column h-100">
+
+        <div th:replace="fragmentos/fragmentos :: header"></div>
+        <div class="row">
+            <div class="col">
+
+
+                <div class="row">
+                    <h2> Cadastrar Instituição</h2>
+                </div>
+
+                <div class="row">
+                    <form class="form form-control" action="/instituicoes/inserir" method="post"
+                          th:object="${instituicao}">
+                        <div class="form-group col-md-6">
+                            <label for="txt_nome">Nome da instituição:</label>
+                            <input type="text" class="form-control" id="txt_nome" placeholder="Nome"
+                                   th:field="*{nome}">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="txt_endereco">Endereço:</label>
+                            <input type="text" class="form-control" id="txt_endereco" placeholder="Endereco"
+                                   th:field="*{endereco}">
+                        </div>
+
+                        <input type="submit" class="btn btn-primary" value="Salvar"/>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <div  th:replace="fragmentos/fragmentos :: footer"></div>
+    </div>
+
+
+</body>
+<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script src="/webjars/popper.js/1.14.3/popper.min.js"></script>
+<script src="/webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</html>
