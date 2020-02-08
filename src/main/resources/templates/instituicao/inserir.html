@@ -7,13 +7,12 @@
 </head>
 <body>
 
-
-    <div class="container d-flex flex-column h-100">
+    <div class="container-fluid">
 
         <div th:replace="fragmentos/fragmentos :: header"></div>
+
         <div class="row">
             <div class="col">
-
 
                 <div class="row">
                     <h2> Cadastrar Instituição</h2>
@@ -41,9 +40,9 @@
 
             </div>
         </div>
-        <div  th:replace="fragmentos/fragmentos :: footer"></div>
-    </div>
 
+        <div th:replace="fragmentos/fragmentos :: footer"></div>
+    </div>
 
 </body>
 <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>

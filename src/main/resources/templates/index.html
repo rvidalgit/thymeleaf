@@ -7,13 +7,14 @@
 </head>
 <body>
 
-<div th:replace="fragmentos/fragmentos :: header"></div>
 
-<div class="container">
-    <h2> Página Inicial</h2>
+    <div class="container-fluid">
+        <div th:replace="fragmentos/fragmentos :: header"></div>
 
-<div th:replace="fragmentos/fragmentos :: footer"></div>
+        <h2> Página Inicial</h2>
 
+        <div th:replace="fragmentos/fragmentos :: footer"></div>
+    </div>
 </body>
 <script src="webjars/jquery/3.4.1/jquery.min.js"></script>
 <script src="webjars/popper.js/1.14.3/popper.min.js"></script>
