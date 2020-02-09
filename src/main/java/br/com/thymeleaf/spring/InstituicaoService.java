@@ -36,11 +36,15 @@ public class InstituicaoService {
         return this.instituicaoRepository.save(instituicao);
     }
 
-    public Optional<Instituicao> info(Long id){
+    public Optional<Instituicao> info(Long id) {
         return this.instituicaoRepository.findById(id);
     }
 
-    public void delete(Long id){
+    public void delete(Long id) {
         this.instituicaoRepository.deleteById(id);
+    }
+
+    public List<Instituicao> buscaPorNome(String nome) {
+        return this.instituicaoRepository.findByNomeContainingOrderByNomeAsc(nome);
     }
 }

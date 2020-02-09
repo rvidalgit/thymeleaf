@@ -3,10 +3,7 @@ package br.com.thymeleaf.spring.controller;
 import br.com.thymeleaf.spring.InstituicaoService;
 import br.com.thymeleaf.spring.model.Instituicao;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -63,7 +60,7 @@ public class InstituicaoController {
     public ModelAndView editar(@PathVariable("idInstituicao") Long idInstituicao) {
         Instituicao instituicao = null;
         Optional<Instituicao> result = this.instituicaoService.info(idInstituicao);
-        if(result.isPresent()){
+        if (result.isPresent()) {
             instituicao = result.get();
         }
         ModelAndView model = new ModelAndView("/instituicao/editar");
@@ -72,14 +69,24 @@ public class InstituicaoController {
     }
 
     @PostMapping("/editar")
-    public String editar(Instituicao instituicao){
+    public String editar(Instituicao instituicao) {
         this.instituicaoService.save(instituicao);
         return "redirect:/instituicoes/index";
     }
 
     @GetMapping("/excluir/{id}")
-    public String apagar(@PathVariable("id") Long id){
+    public String apagar(@PathVariable("id") Long id) {
         this.instituicaoService.delete(id);
         return "redirect:/instituicoes/index";
+    }
+
+    @GetMapping({"/pesquisar", "/pesquisar/{nome}"})
+    public @ResponseBody
+    List<Instituicao> pesquisa(@PathVariable(value = "nome", required = false) Optional<String> nome) {
+        if (nome.isPresent()) {
+            return this.instituicaoService.buscaPorNome(nome.get());
+        } else {
+            return this.instituicaoService.findAll();
+        }
     }
 }

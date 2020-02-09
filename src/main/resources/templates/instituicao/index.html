@@ -13,7 +13,27 @@
         <h2> Lista de instituições cadastradas</h2>
         <a href="/instituicoes/inserir" class="btn btn-primary mb-2">Novo</a>
 
-        <table class="table table-hover table-striped">
+        <div>
+            <form>
+                <div class="form-group">
+                    <div class="row justify-content-start">
+                        <div class="col">
+                            <label for="txt_pesquisa">Pesquisar:</label>
+                        </div>
+                        <div class="col">
+                            <input id="txt_pesquisa" class="form-control col-6" type="text"
+                                   placeholder="Faça aqui sua pesquisa"/>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-info col-12" id="btn-pesquisa">Pesquisar</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <table class="table table-hover table-striped" id="tbl-instituicoes">
             <thead>
                 <th>Nome da instituição</th>
                 <th>Endereço</th>
@@ -43,5 +63,33 @@
 <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
 <script src="/webjars/popper.js/1.14.3/popper.min.js"></script>
 <script src="/webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn-pesquisa').click(function () {
+            $.ajax({
+                method: 'GET',
+                url: '/instituicoes/pesquisar/' + $('#txt_pesquisa').val(),
+                success: function (data) {
+                    $('#tbl-instituicoes tbody > tr').remove();
+                    $.each(data, function () {
+                        $('#tbl-instituicoes tbody').append(
+                            '<tr>' +
+                            '<td>' + this.nome + '</td>' +
+                            '<td>' + this.endereco + '</td>' +
+                            '<td>' +
+                            '<a href="/instituicoes/editar/' + this.id + '">Editar</a> | ' +
+                            '<a href="/instituicoes/excluir/' + this.id + '">Excluir</a>' +
+                            '</td>' +
+                            '</tr>'
+                        );
+                    });
+                },
+                error: function () {
+                    alert('Error ao pesquisar');
+                }
+            });
+        });
+    });
+</script>
 
 </html>
