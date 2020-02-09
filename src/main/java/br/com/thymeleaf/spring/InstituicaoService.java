@@ -18,4 +18,8 @@ public class InstituicaoService {
     public List<Instituicao> findAll() {
         return this.instituicaoRepository.findAll();
     }
+
+    public Instituicao save(Instituicao instituicao) {
+        return this.instituicaoRepository.save(instituicao);
+    }
 }

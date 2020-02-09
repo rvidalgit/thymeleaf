@@ -3,8 +3,8 @@ package br.com.thymeleaf.spring.controller;
 import br.com.thymeleaf.spring.InstituicaoService;
 import br.com.thymeleaf.spring.model.Instituicao;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,7 +20,6 @@ public class InstituicaoController {
         this.instituicaoService = instituicaoService;
     }
 
-
     @GetMapping("/index")
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("instituicao/index");
@@ -30,11 +29,16 @@ public class InstituicaoController {
     }
 
     @GetMapping("/inserir")
-    public ModelAndView inserir(){
+    public ModelAndView inserir() {
         ModelAndView modelAndView = new ModelAndView("instituicao/inserir");
         modelAndView.addObject("instituicao", new Instituicao());
         return modelAndView;
     }
 
+    @PostMapping("/inserir")
+    public String inserir(Instituicao instituicao) {
+        this.instituicaoService.save(instituicao);
+        return "redirect:/instituicoes/index";
+    }
 
 }

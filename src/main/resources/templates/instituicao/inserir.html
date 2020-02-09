@@ -11,31 +11,31 @@
 
         <div th:replace="fragmentos/fragmentos :: header"></div>
 
-        <div class="row">
-            <div class="col">
+        <div class="row-cols-1">
+            <div class="col-12">
 
                 <div class="row">
                     <h2> Cadastrar Instituição</h2>
                 </div>
 
                 <div class="row">
-                    <form class="form form-control" action="/instituicoes/inserir" method="post"
-                          th:object="${instituicao}">
-                        <div class="form-group col-md-6">
-                            <label for="txt_nome">Nome da instituição:</label>
-                            <input type="text" class="form-control" id="txt_nome" placeholder="Nome"
-                                   th:field="*{nome}">
-                        </div>
+                    <div class="col-12 align-content-center">
+                        <form action="/instituicoes/inserir" method="post" th:object="${instituicao}">
+                            <div class="form-group">
+                                <label for="txt_nome">Nome da instituição:</label>
+                                <input type="text" class="form-control" id="txt_nome" placeholder="Nome"
+                                       th:field="*{nome}">
+                            </div>
+                            <div class="form-group">
+                                <label for="txt_endereco">Endereço:</label>
+                                <input type="text" class="form-control" id="txt_endereco" placeholder="Endereco"
+                                       th:field="*{endereco}">
+                            </div>
+                            <input type="submit" class="btn btn-primary" value="Salvar"/>
+                            <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+                        </form>
+                    </div>
 
-                        <div class="form-group col-md-6">
-                            <label for="txt_endereco">Endereço:</label>
-                            <input type="text" class="form-control" id="txt_endereco" placeholder="Endereco"
-                                   th:field="*{endereco}">
-                        </div>
-
-                        <input type="submit" class="btn btn-primary" value="Salvar"/>
-
-                    </form>
                 </div>
 
             </div>
