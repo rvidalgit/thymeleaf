@@ -20,6 +20,11 @@ public class InstituicaoController {
         this.instituicaoService = instituicaoService;
     }
 
+    /**
+     * Método resposável por retornar a página de listagem.
+     *
+     * @return ModelAndView
+     * */
     @GetMapping("/index")
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("instituicao/index");
@@ -28,6 +33,11 @@ public class InstituicaoController {
         return modelAndView;
     }
 
+    /**
+     * Método resposável por retornar a página de cadastro.
+     *
+     * @return ModelAndView
+     * */
     @GetMapping("/inserir")
     public ModelAndView inserir() {
         ModelAndView modelAndView = new ModelAndView("instituicao/inserir");
@@ -35,6 +45,12 @@ public class InstituicaoController {
         return modelAndView;
     }
 
+    /**
+     * Método resposável por retornar a página de listagem.
+     *
+     * @param instituicao Instituicao
+     * @return "redirect:/instituicoes/index"
+     * */
     @PostMapping("/inserir")
     public String inserir(Instituicao instituicao) {
         this.instituicaoService.save(instituicao);
