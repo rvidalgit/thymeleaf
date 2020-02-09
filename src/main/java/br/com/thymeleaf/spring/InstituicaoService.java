@@ -6,6 +6,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InstituicaoService {
@@ -33,5 +34,13 @@ public class InstituicaoService {
      */
     public Instituicao save(Instituicao instituicao) {
         return this.instituicaoRepository.save(instituicao);
+    }
+
+    public Optional<Instituicao> info(Long id){
+        return this.instituicaoRepository.findById(id);
+    }
+
+    public void delete(Long id){
+        this.instituicaoRepository.deleteById(id);
     }
 }

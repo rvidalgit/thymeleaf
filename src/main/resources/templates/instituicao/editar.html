@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Inserção de Instituição</title>
+    <title>Alteração de Instituição</title>
     <link rel="stylesheet" href="/webjars/bootstrap/4.4.1/css/bootstrap.min.css"/>
 </head>
 <body>
@@ -31,10 +31,9 @@
                                 <input type="text" class="form-control" id="txt_endereco" placeholder="Endereco"
                                        th:field="*{endereco}">
                             </div>
-
-                            <div style="margin-left: 95%">
-                                <input type="submit" class="btn btn-primary" value="Salvar"/>
-                            </div>
+                            <input type="hidden" th:field="*{id}">
+                            <input type="submit" class="btn btn-primary" value="Salvar"/>
+                            <!--<button type="submit" class="btn btn-primary">Submit</button>-->
                         </form>
                     </div>
 
