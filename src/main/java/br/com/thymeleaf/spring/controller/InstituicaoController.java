@@ -1,6 +1,6 @@
 package br.com.thymeleaf.spring.controller;
 
-import br.com.thymeleaf.spring.InstituicaoService;
+import br.com.thymeleaf.spring.service.InstituicaoService;
 import br.com.thymeleaf.spring.model.Instituicao;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

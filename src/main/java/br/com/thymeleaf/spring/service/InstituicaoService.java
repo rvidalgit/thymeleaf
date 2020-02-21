@@ -1,4 +1,4 @@
-package br.com.thymeleaf.spring;
+package br.com.thymeleaf.spring.service;
 
 import br.com.thymeleaf.spring.model.Instituicao;
 import br.com.thymeleaf.spring.repository.InstituicaoRepository;
