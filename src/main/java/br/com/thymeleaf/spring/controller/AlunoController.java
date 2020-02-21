@@ -1,4 +1,7 @@
 package br.com.thymeleaf.spring.controller;
 
-public class AluboController {
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class AlunoController {
 }
