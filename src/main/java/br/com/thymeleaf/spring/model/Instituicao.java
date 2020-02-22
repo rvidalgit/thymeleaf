@@ -1,6 +1,7 @@
 package br.com.thymeleaf.spring.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "instituicao")
@@ -16,12 +17,23 @@ public class Instituicao {
     @Column(length = 100)
     private String endereco;
 
+    @OneToMany(mappedBy = "instituicao")
+    private Set<Aluno> alunos;
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Set<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(Set<Aluno> alunos) {
+        this.alunos = alunos;
     }
 
     public String getNome() {
