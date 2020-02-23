@@ -63,7 +63,7 @@ public class InstituicaoController {
         if (result.isPresent()) {
             instituicao = result.get();
         }
-        ModelAndView model = new ModelAndView("/instituicao/editar");
+        ModelAndView model = new ModelAndView("instituicao/editar");
         model.addObject("instituicao", instituicao);
         return model;
     }

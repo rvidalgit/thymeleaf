@@ -6,6 +6,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -17,7 +18,7 @@ public class AlunoService {
         this.alunoRepository = alunoRepository;
     }
 
-    public Aluno create(Aluno aluno) {
+    public Aluno save(Aluno aluno) {
         return this.alunoRepository.save(aluno);
     }
 
@@ -28,5 +29,9 @@ public class AlunoService {
 
     public void delete(UUID uuid) {
         this.alunoRepository.deleteById(uuid);
+    }
+
+    public Optional<Aluno> info(UUID uuid) {
+        return this.alunoRepository.findById(uuid);
     }
 }
