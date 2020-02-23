@@ -19,10 +19,13 @@ public class Aluno {
     @Column(length = 100, nullable = false)
     private String nome;
 
+    @NotNull(message = "A idade do aluno deve ser informado")
     @Column(precision = 0)
     private int idade;
 
-    @ManyToOne
+    @NotNull(message = "A instituição do aluno deve ser informado")
+    @ManyToOne(optional = false)
+    @JoinTable(name = "id_instituicao")
     private Instituicao instituicao;
 
     public UUID getId() {
