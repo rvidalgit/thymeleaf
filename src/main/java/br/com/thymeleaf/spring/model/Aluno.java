@@ -25,7 +25,7 @@ public class Aluno {
 
     @NotNull(message = "A instituição do aluno deve ser informado")
     @ManyToOne(optional = false)
-    @JoinTable(name = "id_instituicao")
+    @JoinColumn(name = "id_instituicao")
     private Instituicao instituicao;
 
     public UUID getId() {

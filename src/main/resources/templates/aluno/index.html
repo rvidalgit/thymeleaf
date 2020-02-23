@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Alunos</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.4.1/css/bootstrap.min.css"/>
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div th:replace="fragmentos/fragmentos :: header"></div>
+
+        <h2> Lista de alunos cadastradas</h2>
+        <a href="/alunos/inserir" class="btn btn-primary mb-2">Novo</a>
+
+        <table class="table table-hover table-striped" id="tbl-alunos">
+            <thead>
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Instituição</th>
+                <th>Ações</th>
+            </thead>
+            <tbody>
+                <tr th:if="${alunos} == null ">
+                    <td class="text-center" colspan="3">Nenhum dado disponível</td>
+                </tr>
+                <tr th:each="aluno: ${alunos}">
+                    <td th:text="${aluno.nome}"></td>
+                    <td th:text="${aluno.idade}"></td>
+                    <td th:text="${aluno.instituicao.nome}"></td>
+                    <td>
+                        <a th:href="@{/alunos/editar/{id}(id=${aluno.id})}">Editar</a> |
+                        <a th:href="@{/alunos/excluir/{id}(id=${aluno.id})}">Apagar</a>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+        <div th:replace="fragmentos/fragmentos :: footer"></div>
+
+    </div>
+
+
+</body>
+<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script src="/webjars/popper.js/1.14.3/popper.min.js"></script>
+<script src="/webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</html>

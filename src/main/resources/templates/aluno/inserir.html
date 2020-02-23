@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Inserção de Aluno</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.4.1/css/bootstrap.min.css"/>
+</head>
+<body>
+
+    <div class="container-fluid">
+
+        <div th:replace="fragmentos/fragmentos :: header"></div>
+
+        <div class="row-cols-1">
+            <div class="col-12">
+
+                <div class="row">
+                    <h2> Cadastrar Aluno</h2>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 align-content-center">
+                        <form action="/alunos/inserir" method="post" th:object="${aluno}">
+                            <div class="form-group">
+                                <label for="txt_nome">Nome do aluno:</label>
+                                <input type="text" class="form-control" id="txt_nome" placeholder="Nome"
+                                       th:field="*{nome}">
+                            </div>
+                            <div class="form-group">
+                                <label for="txt_idade">Idade:</label>
+                                <input type="number" class="form-control" id="txt_idade" placeholder="Idade"
+                                       th:field="*{idade}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="slt_instituicao">Instituição::</label>
+                                <select class="form-control" th:field="*{instituicao.id}" id="slt_instituicao">
+                                    <option th:each="instituicao: ${instituicoes}" th:value="${instituicao.id}"
+                                            th:text="${instituicao.nome}"></option>
+                                </select>
+                            </div>
+
+                            <div style="margin-left: 95%">
+                                <input type="submit" class="btn btn-primary" value="Salvar"/>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div th:replace="fragmentos/fragmentos :: footer"></div>
+    </div>
+
+</body>
+<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script src="/webjars/popper.js/1.14.3/popper.min.js"></script>
+<script src="/webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</html>

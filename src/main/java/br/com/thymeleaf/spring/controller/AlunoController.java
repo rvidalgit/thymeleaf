@@ -1,27 +1,59 @@
 package br.com.thymeleaf.spring.controller;
 
 import br.com.thymeleaf.spring.model.Aluno;
+import br.com.thymeleaf.spring.model.Instituicao;
 import br.com.thymeleaf.spring.service.AlunoService;
-import org.springframework.http.ResponseEntity;
+import br.com.thymeleaf.spring.service.InstituicaoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping(("/alunos"))
 public class AlunoController {
 
     private AlunoService alunoService;
+    private InstituicaoService instituicaoService;
 
-    public AlunoController(AlunoService alunoService) {
+    public AlunoController(AlunoService alunoService, InstituicaoService instituicaoService) {
         this.alunoService = alunoService;
+        this.instituicaoService = instituicaoService;
     }
 
-    @GetMapping("/teste")
-    public ResponseEntity<Aluno> create() {
+    @GetMapping("/index")
+    public ModelAndView index() {
+        ModelAndView model = new ModelAndView("aluno/index");
+        List<Aluno> alunos = this.alunoService.findAll();
+        model.addObject("alunos", alunos);
+        return model;
+    }
+
+    @GetMapping("/inserir")
+    public ModelAndView inserir() {
+        ModelAndView model = new ModelAndView("aluno/inserir");
         Aluno aluno = new Aluno();
-        aluno.setNome("teste");
-        aluno.setIdade(14);
-        return ResponseEntity.ok(alunoService.create(aluno));
+        aluno.setInstituicao(new Instituicao());
+        model.addObject("aluno", aluno);
+        model.addObject("instituicoes", this.instituicaoService.findAll());
+        return model;
+    }
+
+    @PostMapping("/inserir")
+    public String inserir(Aluno aluno) {
+        this.alunoService.create(aluno);
+        return "redirect:/alunos/index";
+    }
+
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable("id") String idUsuario) {
+        UUID uuid = UUID.fromString(idUsuario);
+        this.alunoService.delete(uuid);
+        return "redirect:/alunos/index";
     }
 }
