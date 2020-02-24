@@ -45,6 +45,6 @@ public class InstituicaoService {
     }
 
     public List<Instituicao> buscaPorNome(String nome) {
-        return this.instituicaoRepository.findByNomeContainingOrderByNomeAsc(nome);
+        return this.instituicaoRepository.findByNome(nome);
     }
 }
